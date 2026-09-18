@@ -166,7 +166,7 @@ function AboutPage() {
           src={meditationHeader}
           alt=""
           aria-hidden="true"
-          className="pointer-events-none absolute -right-24 top-12 h-72 w-72 object-contain opacity-25 sm:-right-8 sm:top-8 sm:h-96 sm:w-96 lg:right-16 lg:top-4 lg:h-[32rem] lg:w-[32rem]"
+          className="pointer-events-none absolute left-1/2 top-12 h-72 w-72 -translate-x-1/2 object-contain opacity-25 sm:top-8 sm:h-96 sm:w-96 lg:top-4 lg:h-[32rem] lg:w-[32rem]"
           width={900}
           height={900}
           loading="eager"
