@@ -427,7 +427,7 @@
 }
 
 .reviews-section {
-  background-color: var(--about-canvas);
+  background-color: oklch(0.98 0.002 93);
 }
 
 .reviews-marquee {
