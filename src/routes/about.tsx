@@ -16,7 +16,7 @@ import champTeam from "@/assets/champ-team-india.webp";
 import champAsana from "@/assets/champ-asana-performance.webp";
 import champSolo from "@/assets/champ-solo-performance.webp";
 import threeMedals from "@/assets/three-yoga-medals.webp";
-import meditationCharacter from "@/assets/meditation-character.webp";
+import meditationHeader from "@/assets/meditating-woman-header.webp";
 
 const teamPhotos = [
   { src: champMedal, alt: "Medal ceremony at the 2nd International Yoga Sports Championship" },
@@ -163,7 +163,7 @@ function AboutPage() {
       <section className="relative bg-about-navy px-4 pb-16 pt-28 text-about-on-navy sm:px-6 sm:pb-20 sm:pt-32 lg:px-8">
         <FloatingHeader />
         <img
-          src={meditationCharacter}
+          src={meditationHeader}
           alt=""
           aria-hidden="true"
           className="pointer-events-none absolute -right-24 top-12 h-72 w-72 object-contain opacity-25 sm:-right-8 sm:top-8 sm:h-96 sm:w-96 lg:right-16 lg:top-4 lg:h-[32rem] lg:w-[32rem]"
