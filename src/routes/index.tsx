@@ -261,7 +261,7 @@ export function Index() {
               size="lg"
               className="group mt-4 h-auto gap-2 rounded-full bg-why-cta px-5 py-2.5 text-xs font-semibold text-why-cta-text shadow-lg transition-transform duration-300 hover:-translate-y-0.5 hover:bg-why-cta-hover sm:mt-6 sm:px-7 sm:py-3.5 sm:text-sm"
             >
-              <Link to="/enroll" search={{}} hash="enroll-form">
+              <Link to="/enroll" search={{ course: undefined }} hash="enroll-form">
                 Book Your Class
                 <ArrowUpRight aria-hidden="true" className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
