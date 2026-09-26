@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Quote } from "lucide-react";
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef } from "react";
 
 import communityYogaImg from "@/assets/community-yoga-class.webp";
 import whyYogaImg from "@/assets/why-yoga-benefits.webp";
@@ -219,7 +219,7 @@ export function Index() {
       el.removeEventListener("pointercancel", onUp);
       el.removeEventListener("lostpointercapture", onUp);
     };
-  }, [handleReviewsHold, handleReviewsRelease]);
+  }, []);
 
   useEffect(() => {
     const video = heroVideoRef.current;
