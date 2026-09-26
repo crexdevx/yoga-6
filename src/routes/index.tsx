@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { ArrowUpRight, Quote } from "lucide-react";
+import { useEffect, useRef, useCallback } from "react";
 
 import communityYogaImg from "@/assets/community-yoga-class.webp";
 import whyYogaImg from "@/assets/why-yoga-benefits.webp";
