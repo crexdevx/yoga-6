@@ -84,6 +84,8 @@
   --color-courses-card: var(--courses-card);
   --color-courses-accent: var(--courses-accent);
   --color-courses-link: var(--courses-link);
+  --color-reviews-section: var(--reviews-section);
+  --color-reviews-text: var(--reviews-text);
   --color-course-canvas: var(--course-canvas);
   --color-course-ink: var(--course-ink);
   --color-course-body: var(--course-body);
@@ -199,6 +201,9 @@
   --courses-card: oklch(1 0 0);
   --courses-accent: oklch(0.52 0.12 150);
   --courses-link: oklch(0.4 0.13 220);
+  --reviews-section: oklch(0.9626 0.0204 298.2);
+  --reviews-text: oklch(0.3124 0.0361 298.05);
+  --reviews-card-shadow: 0 0.5rem 1.5rem oklch(0.3124 0.0361 298.05 / 0.1);
   --course-canvas: oklch(0.97 0.012 178);
   --course-ink: oklch(0.25 0.055 205);
   --course-body: oklch(0.43 0.038 205);
@@ -316,6 +321,9 @@
   --courses-card: oklch(0.22 0.04 250);
   --courses-accent: oklch(0.78 0.11 151);
   --courses-link: oklch(0.78 0.12 220);
+  --reviews-section: oklch(0.9626 0.0204 298.2);
+  --reviews-text: oklch(0.3124 0.0361 298.05);
+  --reviews-card-shadow: 0 0.5rem 1.5rem oklch(0.3124 0.0361 298.05 / 0.1);
   --course-canvas: oklch(0.16 0.025 205);
   --course-ink: oklch(0.96 0.018 175);
   --course-body: oklch(0.82 0.024 180);
@@ -377,7 +385,7 @@
 }
 
 .courses-section {
-  background-color: var(--about-canvas);
+  background-color: var(--reviews-section);
 }
 
 .courses-scroll {
@@ -427,14 +435,20 @@
 }
 
 .reviews-section {
-  background-color: var(--about-canvas);
+  background-color: var(--reviews-section);
 }
 
 .reviews-marquee {
   overflow-x: auto;
   scrollbar-width: none;
+  cursor: grab;
+  touch-action: pan-x;
   -webkit-mask-image: linear-gradient(to right, transparent, black 4rem, black calc(100% - 4rem), transparent);
   mask-image: linear-gradient(to right, transparent, black 4rem, black calc(100% - 4rem), transparent);
+}
+
+.reviews-marquee:active {
+  cursor: grabbing;
 }
 
 .reviews-marquee::-webkit-scrollbar {
@@ -448,13 +462,18 @@
   padding: 0.5rem 1rem;
 }
 
+.review-card {
+  box-shadow: var(--reviews-card-shadow);
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .reviews-track {
     animation: reviews-scroll 70s linear infinite;
   }
 
   .reviews-marquee:hover .reviews-track,
-  .reviews-marquee:focus-within .reviews-track {
+  .reviews-marquee:focus-within .reviews-track,
+  .reviews-marquee:active .reviews-track {
     animation-play-state: paused;
   }
 }
