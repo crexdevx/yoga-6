@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Quote } from "lucide-react";
 import { useEffect, useRef } from "react";
 
 import communityYogaImg from "@/assets/community-yoga-class.webp";
@@ -193,6 +193,33 @@ export const Route = createFileRoute("/")({
 
 export function Index() {
   const heroVideoRef = useRef<HTMLVideoElement>(null);
+  const reviewsMarqueeRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = reviewsMarqueeRef.current;
+    if (!el) return;
+    const onDown = (e: PointerEvent) => {
+      try {
+        el.setPointerCapture(e.pointerId);
+      } catch {
+        /* ignore */
+      }
+      el.classList.add("is-holding");
+    };
+    const onUp = () => {
+      el.classList.remove("is-holding");
+    };
+    el.addEventListener("pointerdown", onDown);
+    el.addEventListener("pointerup", onUp);
+    el.addEventListener("pointercancel", onUp);
+    el.addEventListener("lostpointercapture", onUp);
+    return () => {
+      el.removeEventListener("pointerdown", onDown);
+      el.removeEventListener("pointerup", onUp);
+      el.removeEventListener("pointercancel", onUp);
+      el.removeEventListener("lostpointercapture", onUp);
+    };
+  }, []);
 
   useEffect(() => {
     const video = heroVideoRef.current;
@@ -479,22 +506,43 @@ export function Index() {
           </div>
         </div>
 
-        <div className="reviews-marquee" aria-label="Student reviews">
+        <div ref={reviewsMarqueeRef} className="reviews-marquee" aria-label="Student reviews">
           <div className="reviews-track">
-            {[...reviews, ...reviews].map((review, i) => (
-              <figure
-                key={`${review.name}-${i}`}
-                aria-hidden={i >= reviews.length ? "true" : undefined}
-                className="review-card flex aspect-square w-[min(78vw,18.5rem)] shrink-0 flex-col justify-between rounded-[1rem] bg-courses-card p-6 sm:w-[18.5rem]"
-              >
-                <blockquote className="overflow-hidden font-sans text-base leading-6 text-reviews-text">
-                  “{review.text}”
-                </blockquote>
-                <figcaption className="mt-4 font-serif text-lg text-courses-heading">
-                  {review.name}
-                </figcaption>
-              </figure>
-            ))}
+            {[...reviews, ...reviews].map((review, i) => {
+              const initials = review.name
+                .trim()
+                .split(/\s+/)
+                .map((w) => w[0])
+                .filter((c) => c && /[A-Za-z]/.test(c))
+                .slice(0, 2)
+                .join("")
+                .toUpperCase();
+              return (
+                <figure
+                  key={`${review.name}-${i}`}
+                  aria-hidden={i >= reviews.length ? "true" : undefined}
+                  className="review-card relative flex aspect-square w-[min(78vw,18.5rem)] shrink-0 flex-col justify-between overflow-hidden rounded-[1rem] bg-courses-card p-6 sm:w-[18.5rem]"
+                >
+                  <Quote
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -left-1 -top-2 size-16 text-courses-accent/30 sm:size-20"
+                    strokeWidth={1.5}
+                    fill="currentColor"
+                  />
+                  <blockquote className="relative z-10 mt-9 overflow-hidden font-sans text-base leading-6 text-reviews-text">
+                    {review.text}
+                  </blockquote>
+                  <figcaption className="relative z-10 mt-4 flex items-center gap-3">
+                    <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-courses-accent/15 text-sm font-bold text-courses-accent">
+                      {initials || "★"}
+                    </span>
+                    <span className="font-serif text-lg text-courses-heading">
+                      {review.name}
+                    </span>
+                  </figcaption>
+                </figure>
+              );
+            })}
           </div>
         </div>
 
