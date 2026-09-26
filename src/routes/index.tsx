@@ -195,16 +195,6 @@ export function Index() {
   const heroVideoRef = useRef<HTMLVideoElement>(null);
   const reviewsMarqueeRef = useRef<HTMLDivElement>(null);
 
-  const handleReviewsHold = useCallback(() => {
-    const el = reviewsMarqueeRef.current;
-    if (el) el.classList.add("is-holding");
-  }, []);
-
-  const handleReviewsRelease = useCallback(() => {
-    const el = reviewsMarqueeRef.current;
-    if (el) el.classList.remove("is-holding");
-  }, []);
-
   useEffect(() => {
     const el = reviewsMarqueeRef.current;
     if (!el) return;
