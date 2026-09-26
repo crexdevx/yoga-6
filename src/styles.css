@@ -447,8 +447,7 @@
   mask-image: linear-gradient(to right, transparent, black 4rem, black calc(100% - 4rem), transparent);
 }
 
-.reviews-marquee:active,
-.reviews-marquee.is-holding {
+.reviews-marquee:active {
   cursor: grabbing;
 }
 
@@ -474,8 +473,7 @@
 
   .reviews-marquee:hover .reviews-track,
   .reviews-marquee:focus-within .reviews-track,
-  .reviews-marquee:active .reviews-track,
-  .reviews-marquee.is-holding .reviews-track {
+  .reviews-marquee:active .reviews-track {
     animation-play-state: paused;
   }
 }
