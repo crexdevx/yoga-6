@@ -485,7 +485,7 @@ export function Index() {
               <figure
                 key={`${review.name}-${i}`}
                 aria-hidden={i >= reviews.length ? "true" : undefined}
-                className="review-card flex aspect-square w-[min(78vw,18.5rem)] shrink-0 flex-col justify-between rounded-2xl bg-courses-card p-6 sm:w-[18.5rem]"
+                className="review-card flex aspect-square w-[min(78vw,18.5rem)] shrink-0 flex-col justify-between rounded-[1rem] bg-courses-card p-6 sm:w-[18.5rem]"
               >
                 <blockquote className="overflow-hidden font-sans text-base leading-6 text-reviews-text">
                   “{review.text}”
