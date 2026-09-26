@@ -193,6 +193,43 @@ export const Route = createFileRoute("/")({
 
 export function Index() {
   const heroVideoRef = useRef<HTMLVideoElement>(null);
+  const reviewsMarqueeRef = useRef<HTMLDivElement>(null);
+
+  const handleReviewsHold = useCallback(() => {
+    const el = reviewsMarqueeRef.current;
+    if (el) el.classList.add("is-holding");
+  }, []);
+
+  const handleReviewsRelease = useCallback(() => {
+    const el = reviewsMarqueeRef.current;
+    if (el) el.classList.remove("is-holding");
+  }, []);
+
+  useEffect(() => {
+    const el = reviewsMarqueeRef.current;
+    if (!el) return;
+    const onDown = (e: PointerEvent) => {
+      try {
+        el.setPointerCapture(e.pointerId);
+      } catch {
+        /* ignore */
+      }
+      el.classList.add("is-holding");
+    };
+    const onUp = () => {
+      el.classList.remove("is-holding");
+    };
+    el.addEventListener("pointerdown", onDown);
+    el.addEventListener("pointerup", onUp);
+    el.addEventListener("pointercancel", onUp);
+    el.addEventListener("lostpointercapture", onUp);
+    return () => {
+      el.removeEventListener("pointerdown", onDown);
+      el.removeEventListener("pointerup", onUp);
+      el.removeEventListener("pointercancel", onUp);
+      el.removeEventListener("lostpointercapture", onUp);
+    };
+  }, [handleReviewsHold, handleReviewsRelease]);
 
   useEffect(() => {
     const video = heroVideoRef.current;
